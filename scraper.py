@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from time import sleep, time
 import os
+import io
 from tqdm import tqdm
 import pickle
 
@@ -133,7 +134,7 @@ def get_lyrics(music_dict, return_list=False, continue_run=None):
                 explicit__warn = 'Confirmação de Idade Esta letra possui restrição de idade , você deve ter mais que 18 anos para acessá-la. Sou maior de 18 anos'
                 if lyrics[:-len(explicit__warn)] == explicit__warn: 
                     lyrics = lyrics[:-len(explicit__warn)]
-                with open(os.path.join(run_name, artist, file_name), 'w') as lyrics_out:
+                with io.open(os.path.join(run_name, artist, file_name), 'w', encoding='utf-8') as lyrics_out:
                     lyrics_out.write(lyrics)
                 print()
                 sleep(0.2)
